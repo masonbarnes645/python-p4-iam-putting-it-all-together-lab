@@ -2,6 +2,7 @@ from faker import Faker
 import flask
 import pytest
 from random import randint, choice as rc
+from ipdb import set_trace
 
 from app import app
 from models import db, User, Recipe
@@ -34,7 +35,6 @@ class TestSignup:
                         The power that's inside''',
                 'image_url': 'https://cdn.vox-cdn.com/thumbor/I3GEucLDPT6sRdISXmY_Yh8IzDw=/0x0:1920x1080/1820x1024/filters:focal(960x540:961x541)/cdn.vox-cdn.com/uploads/chorus_asset/file/24185682/Ash_Ketchum_World_Champion_Screenshot_4.jpg',
             })
-
             assert(response.status_code == 201)
 
             new_user = User.query.filter(User.username == 'ashketchum').first()
