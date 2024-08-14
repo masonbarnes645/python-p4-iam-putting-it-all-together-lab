@@ -158,7 +158,7 @@ class TestLogin:
                 'username': 'ashketchum',
                 'password': 'pikachu',
             })
-
+        
             assert(response.get_json()['username'] == 'ashketchum')
 
             with client.session_transaction() as session:
@@ -220,6 +220,7 @@ class TestLogout:
                 session['user_id'] = None
             
             response = client.delete('/logout')
+
 
             assert response.status_code == 401
 

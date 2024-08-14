@@ -11,8 +11,6 @@ class User(db.Model, SerializerMixin):
     _password_hash = db.Column(db.String)
     image_url = db.Column(db.String)
     bio = db.Column(db.String)
-    
-
     recipes = db.relationship("Recipe", back_populates='user')
 
     def __init__(self, username=None, password=None, **kwargs):
@@ -46,6 +44,7 @@ class Recipe(db.Model, SerializerMixin):
 
     user = db.relationship("User", back_populates='recipes')
     
+    serialize_rules = ("-user_id", )
     @validates('instructions')
     def validates_instructions(self, _, instructions):
         if len(instructions) < 50:
